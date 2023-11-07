@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/audio/kenney interface sounds/drop_003.ogg" type="AudioStream" id=3]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.3
+
+[sub_resource type="SphereShape" id=2]
+radius = 0.32
+
+[node name="Player" type="KinematicBody" groups=["Player"]]
+script = ExtResource( 1 )
+shootAudio = NodePath("ShootAudioStreamPlay")
+crashAudio = NodePath("CrashAudioStreamPlayer3D2")
+sprite = NodePath("Sprite3D")
+groundCheck = NodePath("GroundCheck")
+leftWallCheck = NodePath("LeftWallCheck")
+rightWallCheck = NodePath("RightWallCheck")
+ceilingCheck = NodePath("CeilingCheck")
+
+[node name="ShootAudioStreamPlay" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="CrashAudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="GroundCheck" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, -0.4, 0 )
+
+[node name="LeftWallCheck" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( -0.4, 0, 0 )
+
+[node name="RightWallCheck" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0.4, 0, 0 )
+
+[node name="CeilingCheck" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, 0.4, 0 )
+
+[node name="CrashArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="CrashArea"]
+shape = SubResource( 2 )

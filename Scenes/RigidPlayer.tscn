@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/RigidPlayer.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Dum/DumPlayer.png" type="Texture" id=2]
+[ext_resource path="res://Assets/audio/kenney interface sounds/drop_003.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Dum/DumPlayerEmote.png" type="Texture" id=4]
+
+[sub_resource type="PhysicsMaterial" id=16]
+friction = 0.3
+
+[sub_resource type="ConvexPolygonShape" id=20]
+margin = 0.01
+points = PoolVector3Array( 0.15, 0.6, 0.3, 0.3, 0.45, 0.3, 0.15, 0.6, -0.3, -0.15, 0.6, 0.3, 0.3, 0.45, -0.3, 0.3, 0.15, 0.3, -0.15, 0.6, -0.3, -0.3, 0.45, 0.3, 0.3, 0.15, -0.3, 0.15, 0, 0.3, -0.3, 0.45, -0.3, -0.3, 0.15, 0.3, 0.15, 0, -0.3, -0.15, 0, 0.3, -0.3, 0.15, -0.3, -0.15, 0, -0.3 )
+
+[sub_resource type="Animation" id=17]
+resource_name = "Emote"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:emoting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:emoting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[node name="RigidPlayer" type="RigidBody" groups=["Player"]]
+mass = 1.5
+physics_material_override = SubResource( 16 )
+gravity_scale = 2.5
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+linear_damp = 1.0
+script = ExtResource( 1 )
+emoting = true
+shootAudio = NodePath("ShootAudioStreamPlay")
+crashAudio = NodePath("CrashAudioStreamPlayer3D")
+sprite = NodePath("Sprite3D")
+animationPlayer = NodePath("AnimationPlayer")
+groundCheck1 = NodePath("GroundCheck1")
+groundCheck2 = NodePath("GroundCheck2")
+groundCheck3 = NodePath("GroundCheck3")
+resetTimer = NodePath("ResetTimer")
+
+[node name="ShootAudioStreamPlay" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = 10.0
+
+[node name="CrashAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0 )
+shape = SubResource( 20 )
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Emote = SubResource( 17 )
+anims/RESET = SubResource( 18 )
+
+[node name="GroundCheck1" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.4, 0 )
+
+[node name="GroundCheck2" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 0, 0 )
+enabled = true
+cast_to = Vector3( 0, -0.4, 0 )
+
+[node name="GroundCheck3" type="RayCast" parent="."]
+enabled = true
+cast_to = Vector3( 0, -0.4, 0 )
+
+[node name="ResetTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_RigidPlayer_body_entered"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_ResetTimer_timeout"]

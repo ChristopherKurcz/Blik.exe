@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/phaseJump2.ogg-f85a7981416d7dc509ad8f91231ac4fa.oggstr"
+
+[deps]
+
+source_file="res://Assets/audio/kenney_digital-audio/phaseJump2.ogg"
+dest_files=[ "res://.import/phaseJump2.ogg-f85a7981416d7dc509ad8f91231ac4fa.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

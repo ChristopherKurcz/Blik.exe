@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/threeTone2.ogg-e297991e7ba38c73f6f6e7544a5e395d.oggstr"
+
+[deps]
+
+source_file="res://Assets/audio/kenney_digital-audio/threeTone2.ogg"
+dest_files=[ "res://.import/threeTone2.ogg-e297991e7ba38c73f6f6e7544a5e395d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

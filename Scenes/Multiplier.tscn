@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Materials/Multiplier.tres" type="Material" id=1]
+[ext_resource path="res://Scripts/Multiplier.gd" type="Script" id=2]
+[ext_resource path="res://Assets/textures/diagonals.png" type="Texture" id=3]
+[ext_resource path="res://Assets/audio/kenney_digital-audio/laser3.ogg" type="AudioStream" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 1 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[node name="Multiplier" type="Spatial"]
+script = ExtResource( 2 )
+audioStreamPlayer = NodePath("AudioStreamPlayer3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+visible = false
+modulate = Color( 1, 1, 1, 0.705882 )
+texture = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+
+[node name="MultiplierArea" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="MultiplierArea"]
+shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = 5.0
+
+[connection signal="body_entered" from="MultiplierArea" to="." method="_on_MultiplierArea_body_entered"]

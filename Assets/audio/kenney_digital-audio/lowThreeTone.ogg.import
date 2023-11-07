@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lowThreeTone.ogg-826f97b491b98540db8e901c9358a4bb.oggstr"
+
+[deps]
+
+source_file="res://Assets/audio/kenney_digital-audio/lowThreeTone.ogg"
+dest_files=[ "res://.import/lowThreeTone.ogg-826f97b491b98540db8e901c9358a4bb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
