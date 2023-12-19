@@ -74,6 +74,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="Credits" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -89,7 +90,7 @@ margin_right = 304.0
 margin_bottom = 1036.0
 theme = SubResource( 26 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "v0.3 playtest"
+text = "v1.0 Demo"
 valign = 2
 
 [node name="CreditsLabel" type="Label" parent="Credits/VBoxContainer"]
@@ -102,6 +103,7 @@ text = "Made by Chris Kurcz"
 valign = 2
 
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )

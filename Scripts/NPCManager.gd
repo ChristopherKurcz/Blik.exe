@@ -21,7 +21,7 @@ export(NodePath) onready var dumBot1Signal = get_node(dumBot1Signal) as Animated
 export(NodePath) onready var dumBot2Signal = get_node(dumBot2Signal) as AnimatedSprite3D
 export(NodePath) onready var dumBot3Signal = get_node(dumBot3Signal) as AnimatedSprite3D
 export(NodePath) onready var dumBot4Signal = get_node(dumBot4Signal) as AnimatedSprite3D
-export(NodePath) onready var dumBot5Signal = get_node(dumBot5Signal) as AnimatedSprite3D
+#export(NodePath) onready var dumBot5Signal = get_node(dumBot5Signal) as AnimatedSprite3D
 # Scripts
 var dialogue = preload("dialogue.gd").new()
 # File Paths
@@ -97,9 +97,9 @@ func show_signal_sprite(botNum):
 	if botNum == 4:
 		dumBot4Signal.play()
 		dumBot4Signal.show()
-	if botNum == 5:
-		dumBot5Signal.play()
-		dumBot5Signal.show()
+#	if botNum == 5:
+#		dumBot5Signal.play()
+#		dumBot5Signal.show()
 
 func hide_signal_sprites():
 	dumBot1Signal.stop()
@@ -110,8 +110,8 @@ func hide_signal_sprites():
 	dumBot3Signal.hide()
 	dumBot4Signal.stop()
 	dumBot4Signal.hide()
-	dumBot5Signal.stop()
-	dumBot5Signal.hide()
+#	dumBot5Signal.stop()
+#	dumBot5Signal.hide()
 
 
 func _on_nextCharTimer_timeout():

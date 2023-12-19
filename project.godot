@@ -15,6 +15,7 @@ run/main_scene="res://Scenes/MainMenuScene.tscn"
 boot_splash/image="res://Assets/Dum/bootSplash.png"
 boot_splash/bg_color=Color( 0.784314, 0.784314, 0.784314, 1 )
 config/icon="res://Assets/Dum/SpeechBubbleFace.png"
+config/windows_native_icon="res://Assets/Dum/Icon.ico"
 
 [autoload]
 

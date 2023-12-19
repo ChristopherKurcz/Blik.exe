@@ -41,13 +41,13 @@ var helpDialogue3 = [
 ]
 
 var section4Dialogue = [
-	"Reporting to Management... Trainee has reached Sector 4",
-	""
+	"Congratulations! You have completed the Trainging Course!",
+	"This Blik Bot is now fully calibrated, and ready to be useful",
+	"Now, go get a new Blik Bot and calibrate it. Good Luck!"
 ]
 
 var helpDialogue4 = [
-	"These Spoko Bots sure can be nasty lil nuisances",
-	"Make sure to avoid your Blik Droid bumping into them at all costs!"
+	"Stop wasting time around here, go calibrate more Blik Bots!"
 ]
 
 var section5Dialogue = [
